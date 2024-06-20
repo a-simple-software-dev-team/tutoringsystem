@@ -2,11 +2,13 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"tutoringsystem/models"
 	"tutoringsystem/services"
 )
 
+// GetNotifications handles the request to retrieve notifications for a user.
 func GetNotifications(c *gin.Context) {
 	user := c.MustGet("user").(models.User)
 
@@ -18,8 +20,8 @@ func GetNotifications(c *gin.Context) {
 
 	emailErr := services.SendNotificationsByEmail(user.ID, notifications)
 	if emailErr != nil {
-		// 记录发送邮件的错误日志
-		// log.Println("Failed to send email:", emailErr)
+		// Log the email sending error, if necessary
+		log.Println("Failed to send email:", emailErr)
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": notifications})
