@@ -16,5 +16,11 @@ func GetNotifications(c *gin.Context) {
 		return
 	}
 
+	emailErr := services.SendNotificationsByEmail(user.ID, notifications)
+	if emailErr != nil {
+		// 记录发送邮件的错误日志
+		// log.Println("Failed to send email:", emailErr)
+	}
+
 	c.JSON(http.StatusOK, gin.H{"data": notifications})
 }
