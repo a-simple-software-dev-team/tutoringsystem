@@ -10,10 +10,3 @@ type Tutor struct {
 	User           User
 	AvailableTimes []AvailableTime `gorm:"foreignkey:TutorID"`
 }
-
-type AvailableTime struct {
-	gorm.Model
-	TutorID   uint   `gorm:"not null"`
-	Day       string `gorm:"type:varchar(10)"`
-	TimeRange string `gorm:"type:varchar(50)"`
-}
