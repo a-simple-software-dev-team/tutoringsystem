@@ -6,14 +6,14 @@ import (
 	"tutoringsystem/middlewares"
 )
 
-func RegisterRoutes(r *gin.Engine) {
-	public := r.Group("/api")
+func RegisterRoutes(r *gin.RouterGroup) {
+	public := r.Group("/")
 	{
 		public.POST("/register", controllers.Register)
 		public.POST("/login", controllers.Login)
 	}
 
-	protected := r.Group("/api")
+	protected := r.Group("/")
 	protected.Use(middlewares.Auth())
 	{
 		protected.GET("/tutors/:id", controllers.GetTutor)
