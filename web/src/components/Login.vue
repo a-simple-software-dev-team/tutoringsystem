@@ -79,9 +79,7 @@ export default {
             }
           })
           .catch(error => {
-            console.error('Error:', error);
-
-            // 处理错误
+            alert('Error Passwd')
           });
 
 

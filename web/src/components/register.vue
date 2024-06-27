@@ -81,13 +81,12 @@ export default {
             this.$router.push('/Login');
           })
           .catch(error => {
-            console.error('Error:', error);
+            if (error.response) {
+              alert('Error Format')
+            }
 
-            // 处理错误
+
           });
-        // this.$router.push('/Login');
-
-
 
       });
     }

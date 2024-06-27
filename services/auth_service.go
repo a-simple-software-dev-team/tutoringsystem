@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"regexp"
 	"tutoringsystem/models"
 	"tutoringsystem/utils"
 
@@ -20,11 +21,26 @@ type LoginInput struct {
 	Password string `json:"password" binding:"required"`
 }
 
+func IsValidEmail(email string) bool {
+	// 定义Email的正则表达式
+	const emailRegexPattern = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+
+	// 编译正则表达式
+	regex := regexp.MustCompile(emailRegexPattern)
+
+	// 使用正则表达式匹配Email地址
+	return regex.MatchString(email)
+}
+
 func RegisterUser(input RegisterInput) (models.User, error) {
 	var user models.User
 	hashedPassword, err := utils.HashPassword(input.Password)
 	if err != nil {
 		return user, err
+	}
+
+	if IsValidEmail(input.Email) == false {
+		return user, errors.New("Email is invalid")
 	}
 
 	user = models.User{
