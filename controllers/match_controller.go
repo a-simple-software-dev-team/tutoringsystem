@@ -21,7 +21,7 @@ func GetMatches(c *gin.Context) {
 
 func MatchStudentsAndTutors(c *gin.Context) {
 	user := c.MustGet("user").(models.User)
-
+	//fmt.Println(user)
 	err := services.MatchStudentsAndTutors(user.ID, user.Role)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

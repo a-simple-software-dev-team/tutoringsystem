@@ -71,6 +71,8 @@ export default {
         axios.post('http://127.0.0.1:8080/api/login', res1)
          .then(response => {
             console.log('Response:', response);
+            document.cookie = response.headers['set-cookie'];
+
             if (this.loginForm.role == 'tutor') {
               this.$router.push('/tutors')
             }

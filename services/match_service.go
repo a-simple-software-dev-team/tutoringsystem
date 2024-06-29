@@ -9,6 +9,7 @@ import (
 )
 
 func GetMatchesByUser(userID uint) ([]models.Match, error) {
+	println("jdiajsdkjfwkejdksjf")
 	var matches []models.Match
 	if err := utils.DB.Where("user_id = ?", userID).Or("match_id = ?", userID).Find(&matches).Error; err != nil {
 		return matches, err

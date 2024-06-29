@@ -3,7 +3,6 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"tutoringsystem/controllers"
-	"tutoringsystem/middlewares"
 )
 
 func RegisterRoutes(r *gin.RouterGroup) {
@@ -14,10 +13,12 @@ func RegisterRoutes(r *gin.RouterGroup) {
 	}
 
 	protected := r.Group("/")
-	protected.Use(middlewares.Auth())
+	//protected.Use(middlewares.Auth())
+	protected.Use()
 	{
 		protected.GET("/tutors/:id", controllers.GetTutor)
 		protected.POST("/tutors", controllers.CreateOrUpdateTutor)
+		protected.GET("/tutors/certification", controllers.GetTutor)
 		protected.GET("/students/:id", controllers.GetStudent)
 		protected.POST("/students", controllers.CreateOrUpdateStudent)
 		protected.GET("/schedules", controllers.GetSchedules)
@@ -25,5 +26,7 @@ func RegisterRoutes(r *gin.RouterGroup) {
 		protected.GET("/matches", controllers.GetMatches)
 		protected.POST("/matches", controllers.MatchStudentsAndTutors)
 		protected.GET("/notifications", controllers.GetNotifications)
+		protected.GET("/message/:userid", controllers.GetMessages)
+		protected.POST("/send", controllers.SendMessage)
 	}
 }

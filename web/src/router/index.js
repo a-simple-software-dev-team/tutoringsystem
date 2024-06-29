@@ -8,7 +8,7 @@ import tutors_schedule from "../components/tutors_schedule.vue"
 import tutors_profile from "../components/tutors_profile.vue"
 import tutors_certification from "../components/tutors_certification.vue"
 import matching from '@/components/matching.vue'
-import matching_student from "../components/matching_student.vue"
+import matching_student from "@/components/matching_student.vue";
 import notifications from "../components/notifications.vue"
 import student from "../components/student.vue"
 import notifications_student from '../components/notifications_student.vue'
